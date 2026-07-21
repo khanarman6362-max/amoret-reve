@@ -27,7 +27,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-svh items-center justify-center overflow-hidden">
       <Image
-        src="/images/Hero/Hero.campaign.jpg"
+        src="/images/Hero/hero.campaign.jpg"
         alt="Amoret Rêve eau de parfum campaign photography"
         fill
         priority

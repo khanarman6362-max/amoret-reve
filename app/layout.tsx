@@ -24,9 +24,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Amoret Rêve",
-  description: "Maison de Parfum",
+  description: "...",
+  verification: {
+    google: "l4up2I6JT_fBVA6HooihdEJxzKLlfvzA5dFJHGzR_aE",
+  },
 };
 
 export default function RootLayout({
