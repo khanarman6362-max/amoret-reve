@@ -27,6 +27,11 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Amoret Rêve",
   description: "...",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   verification: {
     google: "l4up2I6JT_fBVA6HooihdEJxzKLlfvzA5dFJHGzR_aE",
   },
