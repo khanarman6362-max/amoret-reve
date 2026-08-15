@@ -130,7 +130,16 @@ export default function Home() {
   return (
   <>
 <Hero />
-    <div className="h-32 md:h-48 bg-[#F7F4EE]" />
+
+<section className="bg-[#F7F4EE] py-16">
+  <Image
+    src="/images/coming-soon-optimized.png"
+    alt="Amoret Rêve — A perfume beyond iconic is coming soon"
+    width={1920}
+    height={1080}
+    className="h-auto w-full object-cover"
+  />
+</section>
 
     {/* Collection */}
     ...

@@ -54,7 +54,7 @@ export default function CollectionPage() {
             Three fragrances.
             Three personalities.
             One philosophy —
-            <span className="italic text-black">
+            <span className="italic text-whitef">
               {" "}Crafted To Be Remembered.
             </span>
           </motion.p>
