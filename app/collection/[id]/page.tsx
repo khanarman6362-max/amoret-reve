@@ -63,7 +63,7 @@ export default async function PerfumePage({ params }: Props) {
         </p>
 
     <a
-  href={`mailto:khanarman6362@gmail.com?subject=Order Request - ${perfume.name}&body=Hello Amoret Rêve,%0D%0A%0D%0AI would like to purchase the ${perfume.name} perfume.%0D%0A%0D%0APlease share the payment details and delivery process.%0D%0A%0D%0AThank you.`}
+  href={`mailto:amoretreve@gmail.com?subject=Order Request - ${perfume.name}&body=Hello Amoret Rêve,%0D%0A%0D%0AI would like to purchase the ${perfume.name} perfume.%0D%0A%0D%0APlease share the payment details and delivery process.%0D%0A%0D%0AThank you.`}
   className="inline-block mt-12 bg-yellow-500 text-black px-8 py-4 rounded-full hover:bg-yellow-400 transition"
 >
   Buy Now

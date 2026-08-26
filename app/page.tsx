@@ -268,10 +268,10 @@ export default function Home() {
   </span>
 
   <a
-    href="mailto:khanarman6362@gmail.com"
+    href="mailto:amoretreve@gmail.com"
     className="mt-2 text-sm tracking-wide text-ivory/70 transition-colors duration-300 hover:text-gold"
   >
-    khanarman6362@gmail.com
+    amoretreve@gmail.com
   </a>
 </div>
 
@@ -455,10 +455,10 @@ export default function Home() {
   </span>
 
   <a
-    href="mailto:khanarman6362@gmail.com"
+    href="mailto:amoretreve@gmail.com"
     className="mt-2 block text-sm tracking-wide text-ivory/70 transition-colors duration-300 hover:text-gold"
   >
-    khanarman6362@gmail.com
+    amoretreve@gmail.com
   </a>
 </div>
 

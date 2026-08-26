@@ -228,7 +228,7 @@ function CheckoutContent() {
     const body = bodyLines.join("\r\n");
 
     const mailtoLink =
-      "mailto:khanarman6362@gmail.com?subject=" +
+      "mailto:amoretreve@gmail.com?subject=" +
       encodeURIComponent(subject) +
       "&body=" +
       encodeURIComponent(body);
