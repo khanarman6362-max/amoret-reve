@@ -280,8 +280,8 @@ export default function Home() {
           <p className="mt-10 font-display text-xl italic leading-relaxed text-ivory/80 md:text-2xl">
             I did not set out to build a perfume house. I set out to bottle
             a feeling — the hush before a confession, the warmth of a hand
-            held a moment too long, a room someone had just left. Mon
-            Amour began on a kitchen table, mixed by hand, with more
+            held a moment too long, a room someone had just left. Amoret
+            Rêve began on a kitchen table, mixed by hand, with more
             patience than skill, until patience became a craft of its own.
             I have never believed fragrance was a product to be sold. It is
             closer to a letter written without knowing who will open it —
