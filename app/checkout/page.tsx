@@ -86,11 +86,256 @@ function PaymentIcon({ id }: { id: PaymentMethod }) {
       </svg>
     );
   }
+  
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
       <rect x="2" y="6" width="20" height="12" rx="2" />
       <circle cx="12" cy="12" r="3" />
     </svg>
+  );
+}
+function PaymentDetails({ method }: { method: PaymentMethod | null }) {
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [upiId, setUpiId] = useState("");
+
+  if (!method) return null;
+
+  const isCard = method === "credit" || method === "debit";
+
+  const formatCardNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 16);
+    return digits.replace(/(.{4})/g, "$1 ").trim();
+  };
+
+  const formatExpiry = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 4);
+
+    if (digits.length > 2) {
+      return `${digits.slice(0, 2)} / ${digits.slice(2)}`;
+    }
+
+    return digits;
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, height: 0, y: -8 }}
+      animate={{ opacity: 1, height: "auto", y: 0 }}
+      exit={{ opacity: 0, height: 0, y: -8 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="mt-4 overflow-hidden"
+    >
+      <div className="rounded-2xl border border-[#A67C32]/20 bg-[#FDFBF7] p-5 sm:p-6">
+
+        {isCard && (
+          <>
+            <div className="mb-6 rounded-2xl border border-[#A67C32]/20 bg-[#F4EFE5] p-5 text-[#3A3328] shadow-[0_18px_40px_-22px_rgba(70,55,30,0.28)]">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8A6A35]/70">
+                    Amoret Rêve
+                  </p>
+
+                  <p className="mt-1 text-xs text-[#3A3328]/60">
+                    {method === "credit" ? "Credit Card" : "Debit Card"}
+                  </p>
+                </div>
+
+                <div className="h-7 w-10 rounded-md border border-[#A67C32]/30 bg-[#D8C49A]/30" />
+              </div>
+
+              <p className="mt-8 text-base tracking-[0.22em] text-[#3A3328]/80">
+                {cardNumber
+                  ? formatCardNumber(cardNumber)
+                  : "•••• •••• •••• ••••"}
+              </p>
+
+              <div className="mt-5 flex items-end justify-between">
+                <div>
+                  <p className="text-[0.5rem] uppercase tracking-[0.2em] text-[#8A6A35]/60">
+                    Cardholder
+                  </p>
+
+                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[#3A3328]/75">
+                    {cardName || "YOUR NAME"}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[0.5rem] uppercase tracking-[0.2em] text-[#8A6A35]/60">
+                    Valid Thru
+                  </p>
+
+                  <p className="mt-1 text-xs text-[#3A3328]/75">
+                    {expiry || "MM / YY"}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="card-number"
+                  className="text-[0.65rem] uppercase tracking-[0.2em] text-[#1A1A1A]/60"
+                >
+                  Card Number
+                </label>
+
+                <input disabled
+                  id="card-number"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  value={formatCardNumber(cardNumber)}
+                  onChange={(e) => {
+                    setCardNumber(e.target.value.replace(/\D/g, "").slice(0, 16));
+                  }}
+                  placeholder="1234 5678 9012 3456"
+                  className="mt-2 w-full rounded-xl border border-[#1A1A1A]/10 bg-white/70 px-4 py-3 text-sm tracking-[0.08em] text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 outline-none transition focus:border-[#A67C32] focus:ring-1 focus:ring-[#A67C32]"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="card-expiry"
+                  className="text-[0.65rem] uppercase tracking-[0.2em] text-[#1A1A1A]/60"
+                >
+                  Expiry Date
+                </label>
+
+                <input disabled
+                  id="card-expiry"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  value={expiry}
+                  onChange={(e) => {
+                    setExpiry(formatExpiry(e.target.value));
+                  }}
+                  placeholder="MM / YY"
+                  className="mt-2 w-full rounded-xl border border-[#1A1A1A]/10 bg-white/70 px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 outline-none transition focus:border-[#A67C32] focus:ring-1 focus:ring-[#A67C32]"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="card-cvv"
+                  className="text-[0.65rem] uppercase tracking-[0.2em] text-[#1A1A1A]/60"
+                >
+                  CVV
+                </label>
+
+                <input disabled
+                  id="card-cvv"
+                  type="password"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  maxLength={4}
+                  value={cvv}
+                  onChange={(e) => {
+                    setCvv(e.target.value.replace(/\D/g, "").slice(0, 4));
+                  }}
+                  placeholder="•••"
+                  className="mt-2 w-full rounded-xl border border-[#1A1A1A]/10 bg-white/70 px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 outline-none transition focus:border-[#A67C32] focus:ring-1 focus:ring-[#A67C32]"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="card-name"
+                  className="text-[0.65rem] uppercase tracking-[0.2em] text-[#1A1A1A]/60"
+                >
+                  Cardholder Name
+                </label>
+
+                <input disabled
+                  id="card-name"
+                  type="text"
+                  autoComplete="off"
+                  value={cardName}
+                  onChange={(e) => setCardName(e.target.value)}
+                  placeholder="Name as shown on card"
+                  className="mt-2 w-full rounded-xl border border-[#1A1A1A]/10 bg-white/70 px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 outline-none transition focus:border-[#A67C32] focus:ring-1 focus:ring-[#A67C32]"
+                />
+              </div>
+            </div>
+
+            <p className="mt-4 text-[0.75rem] leading-5 text-[#1A1A1A]/45">
+           Card payments will be enabled when Amoret Rêve officially launches.
+  Card details cannot be entered at this stage. 
+            </p>
+          </>
+        )}
+
+        {method === "upi" && (
+          <>
+            <div className="mb-5">
+              <p className="text-sm font-medium text-[#1A1A1A]">
+                UPI Payment
+              </p>
+
+              <p className="mt-1 text-xs leading-5 text-[#1A1A1A]/45">
+                UPI payments will be enabled when the Amoret Rêve collection
+                officially launches.
+              </p>
+            </div>
+
+            <div>
+              <label
+                htmlFor="upi-id"
+                className="text-[0.65rem] uppercase tracking-[0.2em] text-[#1A1A1A]/60"
+              >
+                UPI ID
+              </label>
+
+              <input disabled
+                id="upi-id"
+                type="text"
+                autoComplete="off"
+                value={upiId}
+                onChange={(e) => setUpiId(e.target.value)}
+                placeholder="name@upi"
+                className="mt-2 w-full rounded-xl border border-[#1A1A1A]/10 bg-white/70 px-4 py-3 text-sm text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 outline-none transition focus:border-[#A67C32] focus:ring-1 focus:ring-[#A67C32]"
+              />
+            </div>
+
+            <div className="mt-4 rounded-xl border border-[#A67C32]/15 bg-[#A67C32]/5 px-4 py-3">
+              <p className="text-[0.65rem] leading-5 text-[#1A1A1A]/55">
+                No UPI payment will be requested or processed at this stage.
+              </p>
+            </div>
+          </>
+        )}
+
+        {method === "cod" && (
+          <>
+            <p className="text-sm font-medium text-[#1A1A1A]">
+              Cash on Delivery
+            </p>
+
+            <p className="mt-2 text-xs leading-5 text-[#1A1A1A]/50">
+              Pay for your order when it is delivered to your address.
+            </p>
+
+            <div className="mt-5 rounded-xl border border-[#A67C32]/15 bg-[#A67C32]/5 px-4 py-4">
+              <p className="text-[0.65rem] uppercase tracking-[0.18em] text-[#A67C32]">
+                Payment Preview
+              </p>
+
+              <p className="mt-2 text-xs leading-5 text-[#1A1A1A]/55">
+                Orders and payment collection will become available when the
+                Amoret Rêve collection officially launches.
+              </p>
+            </div>
+          </>
+        )}
+
+      </div>
+    </motion.div>
   );
 }
 
@@ -421,7 +666,8 @@ function CheckoutContent() {
                   );
                 })}
               </div>
-              {showErrors && !paymentMethod && (
+              <PaymentDetails method={paymentMethod} />
+                            {showErrors && !paymentMethod && (
                 <span className="mt-4 block text-[0.65rem] text-red-500">
                   Please select a payment method.
                 </span>

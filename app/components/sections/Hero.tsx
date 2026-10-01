@@ -56,9 +56,9 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-10 font-display text-[44px] font-light leading-[1.05] tracking-tight text-ivory sm:text-[58px] md:text-[74px] lg:text-[86px]"
         >
-          The Art of
+          WEAR YOUR
           <br />
-          French Perfumery
+         PRESENCE.
         </motion.h1>
 
         <motion.span variants={fadeUp} className="mt-8 h-px w-16 bg-gold/70" />
@@ -67,7 +67,7 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-8 max-w-md text-balance font-sans text-sm font-light leading-relaxed text-ivory/80 md:text-base"
         >
-          Crafted in Paris. Created for timeless elegance.
+          Distinctive scent. Lasting presence.
         </motion.p>
 
         <motion.div
@@ -112,7 +112,7 @@ export default function Hero() {
               Signature
             </span>
             <span className="text-[0.6rem] uppercase tracking-[0.2em] text-ivory/90">
-              Extrait de Parfum
+              Eau de Parfum
             </span>
           </div>
 
